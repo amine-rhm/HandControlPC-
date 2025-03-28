@@ -4,7 +4,6 @@ import numpy as np
 import cv2
 import math
 
-
 class VolumeController:
     def __init__(self):
         self.devices = AudioUtilities.GetSpeakers()
