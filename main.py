@@ -14,6 +14,7 @@ def main():
     GESTURE_HISTORY = []
     GESTURE_HISTORY_LENGTH = 15
     cooldown_frames = 0  # Nouveau : empêche les changements trop rapides
+     CUSTOM_IMAGE_PATH = "utils/logo.png/logo.png"  # <-- Modification ici
 
     # Initialisation
     cap = cv2.VideoCapture(0)
