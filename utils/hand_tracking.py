@@ -1,75 +1,63 @@
 import cv2
 import mediapipe as mp
+import math
+
+import pyautogui
+pyautogui.FAILSAFE = False
 
 
 class HandDetector:
     def __init__(self):
-        # Initialisation du modèle MediaPipe Hands
         self.mp_hands = mp.solutions.hands
         self.hands = self.mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=2,
             min_detection_confidence=0.7,
-            min_tracking_confidence=0.5,
-            model_complexity=1
+            min_tracking_confidence=0.5
         )
         self.mp_draw = mp.solutions.drawing_utils
         self.results = None
-        self.handedness = []
 
     def find_hands(self, img):
-        # Conversion BGR -> RGB et détection
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(img_rgb)
-        self.handedness = []
 
-        # Détection de la main gauche/droite
-        if self.results.multi_handedness:
-            for hand in self.results.multi_handedness:
-                self.handedness.append(hand.classification[0].label)
-
-        # Dessiner les landmarks
         if self.results.multi_hand_landmarks:
             for hand_landmarks in self.results.multi_hand_landmarks:
                 self.mp_draw.draw_landmarks(
-                    img,
-                    hand_landmarks,
-                    self.mp_hands.HAND_CONNECTIONS
-                )
+                    img, hand_landmarks, self.mp_hands.HAND_CONNECTIONS)
         return img
 
     def get_landmarks(self, img):
+        h, w = img.shape[:2]
         landmarks = []
-        h, w, _ = img.shape
 
         if self.results.multi_hand_landmarks:
-            for hand_num, hand in enumerate(self.results.multi_hand_landmarks):
-                hand_data = {
-                    "lmList": [],
-                    "handedness": self.handedness[hand_num] if hand_num < len(self.handedness) else "Unknown"
-                }
-
+            for hand in self.results.multi_hand_landmarks:
+                hand_lms = []
                 for id, lm in enumerate(hand.landmark):
                     cx, cy = int(lm.x * w), int(lm.y * h)
-                    hand_data["lmList"].append({"id": id, "x": cx, "y": cy})
-
-                landmarks.append(hand_data)
-
+                    hand_lms.append({"id": id, "x": cx, "y": cy})
+                landmarks.append({"lmList": hand_lms})
         return landmarks
 
-    def fingers_up(self, hand_data):
-        fingers = []
-        if not hand_data["lmList"]:
+    def fingers_up(self, hand_data, confidence=0.3):
+        fingers = [0, 0, 0, 0, 0]
+        if not hand_data["lmList"] or len(hand_data["lmList"]) < 21:
             return fingers
 
-        # Pouce (dépend de la main gauche/droite)
-        if hand_data["handedness"] == "Right":
-            fingers.append(1 if hand_data["lmList"][4]["x"] > hand_data["lmList"][3]["x"] else 0)
-        else:
-            fingers.append(1 if hand_data["lmList"][4]["x"] < hand_data["lmList"][3]["x"] else 0)
+        # Pouce (basé sur la position X)
+        if hand_data["lmList"][4]["x"] > hand_data["lmList"][3]["x"]:
+            fingers[0] = 1
 
-        # Autres doigts
-        for tip, pip in [(8, 6), (12, 10), (16, 14), (20, 18)]:
-            fingers.append(1 if hand_data["lmList"][tip]["y"] < hand_data["lmList"][pip]["y"] else 0)
+        # Autres doigts (basé sur la position Y)
+        finger_tips = [8, 12, 16, 20]
+        finger_pips = [6, 10, 14, 18]
+
+        for i in range(4):
+            tip_y = hand_data["lmList"][finger_tips[i]]["y"]
+            pip_y = hand_data["lmList"][finger_pips[i]]["y"]
+            if tip_y < pip_y - (30 * (1 + confidence)):
+                fingers[i + 1] = 1
 
         return fingers

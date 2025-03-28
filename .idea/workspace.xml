@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a27635ff-a665-4941-b79a-d3394921f60a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/new.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/hand_tracking.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/screenshot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/volume_control.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/zoom_control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/capture_20250316_021500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshots/capture_20250316_021521.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/hand_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/hand_tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/screenshot.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/screenshot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/volume_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/volume_control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/zoom_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/zoom_control.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     &quot;Python.hand_tracking.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
   <component name="RunManager">
@@ -91,5 +88,16 @@
       <updated>1741790375206</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
