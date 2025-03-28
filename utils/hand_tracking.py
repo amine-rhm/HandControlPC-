@@ -53,7 +53,7 @@ class HandDetector:
         # Autres doigts (basé sur la position Y)
         finger_tips = [8, 12, 16, 20]
         finger_pips = [6, 10, 14, 18]
-
+        
         for i in range(4):
             tip_y = hand_data["lmList"][finger_tips[i]]["y"]
             pip_y = hand_data["lmList"][finger_pips[i]]["y"]
