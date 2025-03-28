@@ -2,7 +2,6 @@ import os
 import time
 import mss
 
-
 class ScreenshotTaker:
     def __init__(self):
         self.folder = "screenshots"
@@ -25,7 +24,6 @@ class ScreenshotTaker:
                 print("Erreur lors du test de capture")
         except Exception as e:
             print(f"ERREUR PERMISSIONS: {str(e)}")
-            print("Assurez-vous que le programme a l'accès à l'écran!")
 
     def capture(self):
         try:
